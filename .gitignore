@@ -88,3 +88,9 @@
 
 # Don't track continuous integration virtual environments
 /continuous-integration/venv/
+
+# Do track template environment file
+!/.env.template
+
+# Don't track configs generated from the templates
+/*.template

@@ -24,12 +24,12 @@ services:
       - "lldap_data:/data"
       # Alternatively, you can mount a local folder
       # - "./lldap_data:/data"
+    env_file:
+      - .env
     environment:
       - TZ=Asia/Taipei
-      - LLDAP_JWT_SECRET=REPLACE_WITH_RANDOM
-      - LLDAP_KEY_SEED=REPLACE_WITH_RANDOM
       - LLDAP_LDAP_BASE_DN=dc=example,dc=com
-      - LLDAP_LDAP_USER_PASS=adminPas$word
+      #- LLDAP_LDAP_USER_PASS=adminPas$word
       # If using LDAPS, set enabled true and configure cert and key path
       # - LLDAP_LDAPS_OPTIONS__ENABLED=true
       # - LLDAP_LDAPS_OPTIONS__CERT_FILE=/path/to/certfile.crt
