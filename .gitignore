@@ -93,4 +93,4 @@
 !/.env.template
 
 # Don't track configs generated from the templates
-/*.template
+/*.env
