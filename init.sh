@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script generates random secrets for the LLDAP service.
+# Initialize the LLDAP service with robust configuration.
 #
 # Copyright 2024 The LLDAP Project contributors
 # SPDX-License-Identifier: GPL-3.0-or-later
