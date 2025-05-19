@@ -17,3 +17,6 @@
 
 # Keep editorconfig for ease of editing of product files
 /.editorconfig -export-ignore
+
+# Keep environment file template
+/.env.template -export-ignore
