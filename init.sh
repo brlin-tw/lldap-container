@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Initialize the LLDAP service with robust configuration.
 #
-# Copyright 2024 The LLDAP Project contributors
+# Copyright 2024 The LLDAP Project contributors <https://github.com/lldap/lldap/commits/83508a3/generate_secrets.sh>
+# Copyright 2025 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 # This file is derived from the original script by the LLDAP project:
