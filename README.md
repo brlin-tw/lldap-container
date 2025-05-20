@@ -11,6 +11,8 @@ The following materials are referenced during the development of this project:
 
 * [With Docker | Installation | lldap/lldap: Light LDAP implementation](https://github.com/lldap/lldap?tab=readme-ov-file#with-docker)  
   Provides the reference Compose configuration file implementation.
+* [Handling http and https requests using a single port with nginx - Server Fault](https://serverfault.com/questions/47876/handling-http-and-https-requests-using-a-single-port-with-nginx)  
+  Explains how to allow HTTP requests to be redirected using the same port of an HTTPS service.
 
 ## Licensing
 

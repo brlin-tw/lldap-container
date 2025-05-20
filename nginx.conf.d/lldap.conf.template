@@ -1,0 +1,21 @@
+# Drop-in NGINX configuration file for LLDAP
+#
+# Copyright 2025 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+server {
+    listen 17170 ssl;
+    listen [::]:17170 ssl;
+    http2 on;
+    server_name __LLDAP_FQDN__;
+
+    ssl_certificate     /etc/ssl/nginx/__LLDAP_FQDN__.crt;
+    ssl_certificate_key /etc/ssl/nginx/__LLDAP_FQDN__.key;
+
+    error_page 497 301 =307 https://__LLDAP_FQDN__:$server_port$request_uri$is_args$args;
+
+    location / {
+        proxy_pass http://lldap:17170;
+        proxy_set_header Host $host;
+    }
+}

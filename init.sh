@@ -266,12 +266,14 @@ if test "${enable_ldaps}" = true; then
         -e "s|^#LLDAP_LDAPS_OPTIONS__CERT_FILE=.*|LLDAP_LDAPS_OPTIONS__CERT_FILE=/ssl/${fqdn}.crt|"
         -e "s|^#LLDAP_LDAPS_OPTIONS__KEY_FILE=.*|LLDAP_LDAPS_OPTIONS__KEY_FILE=/ssl/${fqdn}.key|"
         -e 's/#- "6360:6360"/- "6360:6360"/'
+        -e "s/__LLDAP_FQDN__/${fqdn}/"
     )
 fi
 
 templates=(
     .env.template
     compose.yml.template
+    nginx.conf.d/lldap.conf.template
 )
 for template in "${templates[@]}"; do
     file="${script_dir}/${template%.template}"

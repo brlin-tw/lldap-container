@@ -17,8 +17,6 @@ services:
     ports:
       # For LDAPS (LDAP Over SSL), enable port if LLDAP_LDAPS_OPTIONS__ENABLED set true, look env below
       #- "6360:6360"
-      # For the web front-end
-      - "17170:17170"
     volumes:
       - "lldap_data:/data"
       # Alternatively, you can mount a local folder
@@ -26,3 +24,17 @@ services:
       - ./ssl:/ssl
     env_file:
       - .env
+
+  # Note: Nginx is an external service. You can find more information about the configuration here:
+  # https://hub.docker.com/_/nginx/
+  rproxy:
+    image: nginx:alpine-slim
+    restart: always
+    ports:
+      - 17170:17170
+    depends_on:
+      - lldap
+    volumes:
+      # https://docs.nextcloud.com/server/latest/admin_manual/installation/nginx.html
+      - ./nginx.conf.d:/etc/nginx/conf.d
+      - ./ssl:/etc/ssl/nginx:ro
