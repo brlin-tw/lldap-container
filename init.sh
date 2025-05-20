@@ -29,6 +29,9 @@ fi
 printf \
     'Info: Checking the existence of the required commands...\n'
 required_commands=(
+    # For creating file backups
+    cp
+
     # For generating random secrets
     head
     tr
@@ -116,8 +119,18 @@ if ! lldap_key_seed="$(print_random)"; then
     exit 1
 fi
 
+if test -e .env; then
+    backup_file=".env.backup-${operation_timestamp}"
+    printf \
+        'Info: Backing up existing .env file to "%s"...\n' \
+        "${backup_file}"
+    if ! cp -a .env "${backup_file}"; then
+        printf 'Error: Unable to back up existing .env file.\n' >&2
+        exit 1
+    fi
+fi
+
 sed_opts=(
-    --in-place=".backup-${operation_timestamp}"
     --regexp-extended
 
     # NOTE: SPACE is used as the separator of the s sed command
