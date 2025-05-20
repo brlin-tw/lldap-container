@@ -29,7 +29,17 @@ fi
 printf \
     'Info: Checking the existence of the required commands...\n'
 required_commands=(
+    # For creating file backups
+    cp
+
+    # For generating random secrets
+    head
+    tr
+
     realpath
+
+    # For generating environment file from template
+    sed
 )
 flag_required_command_check_failed=false
 for command in "${required_commands[@]}"; do
