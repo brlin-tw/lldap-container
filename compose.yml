@@ -6,7 +6,6 @@
 # Copyright 2025 lldap project contributors <https://github.com/lldap/lldap/commits/0baee7a/README.md>
 # Copyright 2025 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
 # SPDX-License-Identifier: GPL-3.0-or-later
-version: "3"
 
 volumes:
   lldap_data:
