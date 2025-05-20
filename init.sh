@@ -8,6 +8,24 @@
 # This file is derived from the original script by the LLDAP project:
 # https://github.com/lldap/lldap/blob/83508a3/generate_secrets.sh
 
+printf \
+    'Info: Configuring the defensive interpreter behaviors...\n'
+set_opts=(
+    # Terminate script execution when an unhandled error occurs
+    -o errexit
+    -o errtrace
+
+    # Terminate script execution when an unset parameter variable is
+    # referenced
+    -o nounset
+)
+if ! set "${set_opts[@]}"; then
+    printf \
+        'Error: Unable to configure the defensive interpreter behaviors.\n' \
+        1>&2
+    exit 1
+fi
+
 print_random () {
     LC_ALL=C tr -dc 'A-Za-z0-9!#%&()*+,-./:;<=>?@[\]^_{|}~' </dev/urandom | head -c 32
 }
