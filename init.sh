@@ -118,6 +118,7 @@ fi
 
 sed_opts=(
     --in-place=".backup-${operation_timestamp}"
+    --regexp-extended
 
     # NOTE: SPACE is used as the separator of the s sed command
     -e "s __LLDAP_JWT_SECRET__ ${lldap_jwt_secret} "
