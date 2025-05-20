@@ -94,3 +94,10 @@
 
 # Don't track configs generated from the templates
 /*.env
+
+# Don't track TLS certificates and private keys
+*.crt
+*.key
+
+# Don't track Compose configuration file generated from template
+/compose.yml

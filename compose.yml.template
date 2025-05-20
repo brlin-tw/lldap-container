@@ -23,5 +23,6 @@ services:
       - "lldap_data:/data"
       # Alternatively, you can mount a local folder
       # - "./lldap_data:/data"
+      - ./ssl:/ssl
     env_file:
       - .env
