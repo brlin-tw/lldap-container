@@ -25,11 +25,3 @@ services:
       # - "./lldap_data:/data"
     env_file:
       - .env
-    environment:
-      - TZ=Asia/Taipei
-      - LLDAP_LDAP_BASE_DN=dc=example,dc=com
-      #- LLDAP_LDAP_USER_PASS=adminPas$word
-      # If using LDAPS, set enabled true and configure cert and key path
-      # - LLDAP_LDAPS_OPTIONS__ENABLED=true
-      # - LLDAP_LDAPS_OPTIONS__CERT_FILE=/path/to/certfile.crt
-      # - LLDAP_LDAPS_OPTIONS__KEY_FILE=/path/to/keyfile.key
