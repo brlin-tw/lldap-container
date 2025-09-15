@@ -31,7 +31,7 @@ services:
     image: nginx:alpine-slim
     restart: always
     ports:
-      - 17170:17170
+      - __LLDAP_WEB_PORT__:17170
     depends_on:
       - lldap
     volumes:

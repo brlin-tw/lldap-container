@@ -152,6 +152,38 @@ if ! lldap_key_seed="$(print_random)"; then
     exit 1
 fi
 
+regex_positive_integers='^[1-9][0-9]*$'
+response=
+while true; do
+    validate_failed=false
+
+    read -r -p 'Please enter the port number to host the HTTPS web interface: [17170] ' response
+
+    if test -z "${response}"; then
+        response=17170
+        printf \
+            'Info: Using "%s" as the port number to host the HTTPS web interface.\n' \
+            "${response}"
+        break
+    fi
+
+    if ! [[ "${response}" =~ ${regex_positive_integers} ]]; then
+        validate_failed=true
+    fi
+
+    if test "${response}" -le 0 || test "${response}" -gt 65535; then
+        validate_failed=true
+    fi
+
+    if test "${validate_failed}" = true; then
+        printf 'Error: Invalid port number. Please try again.\n' 1>&2
+        continue
+    else
+        break
+    fi
+done
+lldap_web_port="${response}"
+
 while true; do
     read -r -p 'Do you want to enable LDAPS? (Y/n) ' response
     case "${response}" in
@@ -199,7 +231,6 @@ if test "${enable_ldaps}" = true; then
                 break
             fi
 
-            regex_positive_integers='^[1-9][0-9]*$'
             if ! [[ "${cert_valid_days}" =~ ${regex_positive_integers} ]]; then
                 printf \
                     'Error: "%s" is not a valid input.  Please try again.\n' \
@@ -258,6 +289,8 @@ sed_opts=(
     # NOTE: SPACE is used as the separator of the s sed command
     -e "s __LLDAP_JWT_SECRET__ ${lldap_jwt_secret} "
     -e "s __LLDAP_KEY_SEED__ ${lldap_key_seed} "
+
+    -e "s@__LLDAP_WEB_PORT__@${lldap_web_port}@"
 )
 
 if test "${enable_ldaps}" = true; then
